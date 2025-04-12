@@ -4,7 +4,7 @@ import { BillboardForm } from "./components/billboard-form";
 const BillboardPage = async ({
   params,
 }: {
-  params: { storeId: string, billboardId: string };
+  params: { storeId: string; billboardId: string };
 }) => {
   // Log the received billboardId to debug the issue
   console.log("Received billboardId:", params.billboardId);
@@ -20,20 +20,21 @@ const BillboardPage = async ({
     );
   }
 
-  // Validate the ObjectId format
-  if (!/^[a-fA-F0-9]{24}$/.test(params.billboardId)) {
-    console.error("Invalid ObjectId format:", params.billboardId); // Log the invalid format
-    throw new Error("Invalid ObjectId format");
+  // Validate the UUID format (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)
+  const uuidRegex = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+  if (!uuidRegex.test(params.billboardId)) {
+    console.error("Invalid UUID format:", params.billboardId);
+    return <div>Billboard not found</div>;
   }
 
-  // Fetch the billboard by its ObjectId (as string)
+  // Fetch the billboard by its UUID
   const billboard = await prismadb.billboard.findUnique({
     where: {
-      id: params.billboardId, // Use the string directly
+      id: params.billboardId, // Use the UUID string directly
     },
   });
 
-  // If no billboard is found, handle the error or return a default response
+  // If no billboard is found, handle the error
   if (!billboard) {
     return <div>Billboard not found</div>;
   }

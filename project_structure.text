@@ -110,6 +110,7 @@
             - route.ts
         - checkout
           - route.ts
+        - cloudinary-upload
         - colors
           - route.ts
           - [colorId]
@@ -169,6 +170,7 @@
     - use-product-modal.tsx
     - use-store-modal.tsx
   - lib
+    - mtn.ts
     - prismadb.ts
     - stripe.ts
     - utils.ts
@@ -194,6 +196,7 @@
   - tsconfig.json
 - E-commerce Admin.zip
 - E-commerce store.zip
+- project_structure.text
 - sstore
   - .env
   - .eslintrc.json
@@ -222,6 +225,8 @@
           - loading.tsx
           - page.tsx
       - loading.tsx
+      - mtn-payment
+        - page.tsx
       - page.tsx
       - product
         - [productId]
@@ -244,18 +249,24 @@
     - ui
       - billboard.tsx
       - button.tsx
+      - card.tsx
       - container.tsx
       - currency.tsx
       - icon-button.tsx
+      - input.tsx
+      - label.tsx
       - modal.tsx
       - no-results.tsx
       - product-card.tsx
       - skeleton.tsx
+      - textarea.tsx
+  - components.json
   - constants.ts
   - hooks
     - use-cart.tsx
     - use-preview-modal.ts
   - lib
+    - cloudinary.ts
     - utils.ts
   - LICENSE
   - next-env.d.ts

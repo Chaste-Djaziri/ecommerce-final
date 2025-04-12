@@ -82,6 +82,7 @@ model Order {
   isPaid      Boolean   @default(false)
   phone       String    @default("")
   address     String    @default("")
+  paymentProof String?   // Added field to store Cloudinary URL for MTN payment proofs
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
